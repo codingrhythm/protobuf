@@ -27,11 +27,14 @@ Pod::Spec.new do |s|
   s.libraries = 'c++'
   # The following would cause duplicate symbol definitions. GPBProtocolBuffers is expected to be
   # left out, as it's an umbrella implementation file.
-  s.exclude_files = 'src/**/compiler/cpp/**',
-                    'src/**/compiler/python/**',
-                    'src/**/compiler/java/**',
-                    'src/**/compiler/**',
-                    'src/**/*unittest*',
+  #s.exclude_files = 'src/**/compiler/cpp/**',
+  #                  'src/**/compiler/python/**',
+  #                  'src/**/compiler/java/**',
+  #                  'src/**/compiler/**',
+  #                  'src/**/*unittest*',
+  #                  'src/**/*test_util*',
+  #                  'src/google/protobuf/any_test.cc'
+  s.exclude_files = 'src/**/*unittest*',
                     'src/**/*test_util*',
                     'src/google/protobuf/any_test.cc'
   s.header_mappings_dir = 'src'
