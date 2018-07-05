@@ -32,7 +32,8 @@ Pod::Spec.new do |s|
                     'src/**/compiler/java/**',
                     'src/**/compiler/**',
                     'src/**/*unittest*',
-                    'src/**/*test_util*'
+                    'src/**/*test_util*',
+                    'src/google/protobuf/any_test.cc'
   s.header_mappings_dir = 'src'
 
   # Set a CPP symbol so the code knows to use framework imports.
