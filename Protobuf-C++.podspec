@@ -12,19 +12,28 @@ Pod::Spec.new do |s|
   s.authors  = { 'The Protocol Buffers contributors' => 'protobuf@googlegroups.com' }
   s.cocoapods_version = '>= 1.0'
   s.requires_arc = false
-  name = 'google'
-  s.module_name = name
-  s.header_dir = name
+  #name = 'google'
+  #s.module_name = name
+  #s.header_dir = name
   s.libraries = 'c++'
-  src_root = '$(PODS_ROOT)/Protobuf'
+  src_root = '$(PODS_ROOT)/Protobuf-C++'
 
   s.source = { :git => 'https://github.com/google/protobuf.git',
                :tag => "v#{s.version}" }
 
-  s.source_files = 'src/*.{h,cc}'
+  s.source_files = 'config.h',
+                   'src/google/protobuf/**/*.{h,cc}'
+  s.compiler_flags = '-D_THREAD_SAFE'
+  s.libraries = 'c++'
   # The following would cause duplicate symbol definitions. GPBProtocolBuffers is expected to be
   # left out, as it's an umbrella implementation file.
-  s.exclude_files = 'objectivec/GPBProtocolBuffers.m'
+  s.exclude_files = 'src/**/compiler/cpp/**',
+                    'src/**/compiler/python/**',
+                    'src/**/compiler/java/**',
+                    'src/**/compiler/**',
+                    'src/**/*unittest*',
+                    'src/**/*test_util*'
+  s.header_mappings_dir = 'src'
 
   # Set a CPP symbol so the code knows to use framework imports.
   s.user_target_xcconfig = { 'GCC_PREPROCESSOR_DEFINITIONS' => '$(inherited) GPB_USE_PROTOBUF_FRAMEWORK_IMPORTS=1' }
