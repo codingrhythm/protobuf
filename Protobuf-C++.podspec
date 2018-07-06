@@ -23,6 +23,7 @@ Pod::Spec.new do |s|
 
   s.source_files = 'config.h',
                    'src/google/protobuf/**/*.{h,cc}'
+
   s.compiler_flags = '-D_THREAD_SAFE'
   s.libraries = 'c++'
   # The following would cause duplicate symbol definitions. GPBProtocolBuffers is expected to be
@@ -45,7 +46,14 @@ Pod::Spec.new do |s|
 
   # Set a CPP symbol so the code knows to use framework imports.
   s.user_target_xcconfig = { 'GCC_PREPROCESSOR_DEFINITIONS' => '$(inherited) GPB_USE_PROTOBUF_FRAMEWORK_IMPORTS=1' }
-  s.pod_target_xcconfig = { 'GCC_PREPROCESSOR_DEFINITIONS' => '$(inherited) GPB_USE_PROTOBUF_FRAMEWORK_IMPORTS=1' }
+  s.pod_target_xcconfig = {
+    # If we don't set these two settings, `include/grpc/support/time.h` and
+    # `src/core/lib/gpr/string.h` shadow the system `<time.h>` and `<string.h>`, breaking the
+    # build.
+    'USE_HEADERMAP' => 'NO',
+    'ALWAYS_SEARCH_USER_PATHS' => 'NO',
+    'GCC_PREPROCESSOR_DEFINITIONS' => '$(inherited) GPB_USE_PROTOBUF_FRAMEWORK_IMPORTS=1'
+  }
 
   s.ios.deployment_target = '7.0'
   s.osx.deployment_target = '10.9'
