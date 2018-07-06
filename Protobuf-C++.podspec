@@ -24,7 +24,7 @@ Pod::Spec.new do |s|
   s.source_files = 'config.h',
                    'src/google/protobuf/**/*.{h,cc}'
 
-  s.compiler_flags = '-D_THREAD_SAFE'
+  s.compiler_flags = '-D_THREAD_SAFE', '-DHAVE_PTHREAD=1'
   s.libraries = 'c++'
   # The following would cause duplicate symbol definitions. GPBProtocolBuffers is expected to be
   # left out, as it's an umbrella implementation file.
