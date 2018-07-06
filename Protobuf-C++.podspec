@@ -38,6 +38,7 @@ Pod::Spec.new do |s|
                     'src/**/compiler/ruby/**',
                     'src/**/compiler/**',
                     'src/**/*unittest*',
+                    'src/**/*test.cc',
                     'src/**/*test_util*',
                     'src/**/testdata/**',
                     'src/google/protobuf/any_test.cc'
