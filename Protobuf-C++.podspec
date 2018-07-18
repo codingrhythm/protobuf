@@ -28,6 +28,7 @@ Pod::Spec.new do |s|
   s.exclude_files = 'src/**/compiler/cpp/**',
                     'src/**/compiler/python/**',
                     'src/**/compiler/java/**',
+                    'src/**/compiler/javanano/**',
                     'src/**/compiler/csharp/**',
                     'src/**/compiler/js/**',
                     'src/**/compiler/objectivec/**',
